@@ -4,9 +4,9 @@ from flask_cors import CORS
 from flask_session import Session
 
 app = Flask(__name__, static_folder='static') # Initialize flask app
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://dw-realtime-chatroom-app.netlify.app/"}})
 app.config['SECRET_KEY'] = 'secret!'
-SQLALCHEMY_DATABASE_URL = "sqlite:///users.db"
+SQLALCHEMY_DATABASE_URL = "postgresql://auth_db_g8sr_user:n9Njd0NULMqbRSN32s1oR22G7rm0Ux3h@dpg-cs01ufpu0jms73e0a4c0-a.oregon-postgres.render.com/auth_db_g8sr"#"sqlite:///users.db"
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URL
 app.config['SESSION_TYPE'] = 'filesystem' # Store sessions in server's filesystem
 app.config['SESSION_PERMANENT'] = False
@@ -55,4 +55,4 @@ def logout():
     return jsonify({"message": "Logged out successfully"}), 200
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=5000, debug=True)
+    app.run()#host='localhost', port=5000, debug=True)
