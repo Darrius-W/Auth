@@ -10,7 +10,7 @@ export default function Home(){
     const handleSignUp = async (event) => {
         event.preventDefault()
         try {
-            const response = await axios.post('https://darrius-w-auth-app.netlify.app/newUser', { userName }, { withCredentials: true });
+            const response = await axios.post('https://auth-vxls.onrender.com/newUser', { userName }, { withCredentials: true });
             
             if (response.status === 201){
                 alert('Sign up Successful');
@@ -27,7 +27,7 @@ export default function Home(){
     const handleLogin = async (event) => {
         event.preventDefault()
         try {
-            const response = await axios.post('https://darrius-w-auth-app.netlify.app/loginUser', { userName }, { withCredentials: true });
+            const response = await axios.post('https://auth-vxls.onrender.com/loginUser', { userName }, { withCredentials: true });
             if (response.status === 200){
                 const data = { name: userName }
                 alert('Login Successful');
