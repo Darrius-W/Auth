@@ -26,7 +26,6 @@ with app.app_context():
     
 
 @app.route('/newUser', methods=['POST', 'GET'])
-@CORS(origins="https://darrius-w-auth-app.netlify.app")
 def add_user():
     data = request.get_json()
     # If user already exists
@@ -40,7 +39,6 @@ def add_user():
     
     
 @app.route('/loginUser', methods=['POST', 'GET'])
-@CORS(origins="https://darrius-w-auth-app.netlify.app")
 def login():
     data = request.get_json()
     user = users.query.filter_by(name=data['userName']).first()
