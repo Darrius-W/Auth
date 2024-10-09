@@ -25,7 +25,7 @@ with app.app_context():
     db.create_all()
     
 
-@app.route('/newUser', methods=['POST', 'GET', 'OPTIONS'])
+@app.route('/newUser', methods=['POST', 'GET'])
 @CORS(origins="https://darrius-w-auth-app.netlify.app")
 def add_user():
     data = request.get_json()
@@ -39,7 +39,7 @@ def add_user():
         return jsonify({'message': 'User added successfully!'}), 201
     
     
-@app.route('/loginUser', methods=['POST', 'GET', 'OPTIONS'])
+@app.route('/loginUser', methods=['POST', 'GET'])
 @CORS(origins="https://darrius-w-auth-app.netlify.app")
 def login():
     data = request.get_json()
@@ -50,12 +50,11 @@ def login():
         return jsonify({"message": "Logged in successfully"}), 200
     return jsonify({"message": "Invalid credentials"}), 401
 
-@app.route('/Logout', methods=['POST', 'GET', 'OPTIONS'])
-@CORS(origins="https://darrius-w-auth-app.netlify.app")
+@app.route('/Logout', methods=['POST'])
 def logout():
     session.pop('userName', None)
     session.clear()
     return jsonify({"message": "Logged out successfully"}), 200
 
 if __name__ == '__main__':
-    app.run(host="https://darrius-w-auth-app.netlify.app/")#host='localhost', port=5000, debug=True)
+    app.run(host="https://darrius-w-auth-app.netlify.app")#host='localhost', port=5000, debug=True)
