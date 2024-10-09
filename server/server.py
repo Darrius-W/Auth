@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_session import Session
 
 app = Flask(__name__, static_folder='static') # Initialize flask app
-CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://example.com"}})
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://darrius-w-auth-app.netlify.app/"}})
 app.config['SECRET_KEY'] = 'secret!'
 SQLALCHEMY_DATABASE_URL = "postgresql://auth_db_g8sr_user:n9Njd0NULMqbRSN32s1oR22G7rm0Ux3h@dpg-cs01ufpu0jms73e0a4c0-a.oregon-postgres.render.com/auth_db_g8sr"#"sqlite:///users.db"
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URL
