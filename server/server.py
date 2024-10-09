@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_session import Session
 
 app = Flask(__name__, static_folder='static') # Initialize flask app
-CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://darrius-w-auth-app.netlify.app/"}})
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://darrius-w-auth-app.netlify.app"}})
 app.config['SECRET_KEY'] = 'secret!'
 SQLALCHEMY_DATABASE_URL = "postgresql://auth_db_g8sr_user:n9Njd0NULMqbRSN32s1oR22G7rm0Ux3h@dpg-cs01ufpu0jms73e0a4c0-a.oregon-postgres.render.com/auth_db_g8sr"#"sqlite:///users.db"
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URL
@@ -25,7 +25,7 @@ with app.app_context():
     db.create_all()
     
 
-@app.route('/newUser', methods=['POST', 'GET'])
+@app.route('/newUser', methods=['POST', 'GET', 'OPTIONS'])
 @CORS(origins="https://darrius-w-auth-app.netlify.app")
 def add_user():
     data = request.get_json()
@@ -39,7 +39,7 @@ def add_user():
         return jsonify({'message': 'User added successfully!'}), 201
     
     
-@app.route('/loginUser', methods=['POST', 'GET'])
+@app.route('/loginUser', methods=['POST', 'GET', 'OPTIONS'])
 @CORS(origins="https://darrius-w-auth-app.netlify.app")
 def login():
     data = request.get_json()
@@ -50,7 +50,8 @@ def login():
         return jsonify({"message": "Logged in successfully"}), 200
     return jsonify({"message": "Invalid credentials"}), 401
 
-@app.route('/Logout', methods=['POST'])
+@app.route('/Logout', methods=['POST', 'GET', 'OPTIONS'])
+@CORS(origins="https://darrius-w-auth-app.netlify.app")
 def logout():
     session.pop('userName', None)
     session.clear()
