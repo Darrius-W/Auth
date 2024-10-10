@@ -11,7 +11,7 @@ export default function Profile(){
 
     const handleLogout = async () => {
         try{
-            const response = await axios.post('/Logout', {}, { withCredentials: true });
+            const response = await axios.post('https://auth-vxls.onrender.com/Logout', {}, { withCredentials: true });
 
             if (response.status === 200){
                 // Redirect to login page
